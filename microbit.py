@@ -1,5 +1,6 @@
-from microbit import *
+import microbit
 import random
+
 class SnakeB():
     UP = 0
     DOWN = 1
@@ -30,7 +31,7 @@ class SnakeB():
         while(play):
             microbit.sleep(self.S_TIME)
             bp = self._handle_buttons()
-            s += 1
+            s = s + 1
             if bp or s == self.S_PER_MOVE:
                 play = self.move()
                 s = 0
@@ -47,7 +48,7 @@ class SnakeB():
             self.left()
             bp = True
         
-         if microbit.button_b.is_pressed():
+        if microbit.button_b.is_pressed():
             while microbit.button_b.is_pressed():
                 microbit.sleep(self.S_TIME)
             self.right()
@@ -63,7 +64,7 @@ class SnakeB():
             y = random.randint(0, 4)
             badA = self.checkCollision(x,y)
         self.a = [x, y]
-        microbit.display.set_pixel(x, y, self A_BRIGHT)
+        microbit.display.set_pixel(x, y, self.A_BRIGHT)
         
     def checkCollision(self, x, y):
         if x > 4 or x < 0 or y > 4 or y < 0:
@@ -93,16 +94,17 @@ class SnakeB():
         elif self.direction == self.DOWN:
             newSegment[1] += 1
         elif self.direction == self.LEFT:
-            newSegment[0] -= 1 
-        elif self.direction == self.right:
+            newSegment[0] -= 1
+        elif self.direction == self.RIGHT:
             newSegment[0] += 1
             
         if self.checkCollision(newSegment[0], newSegment[1])
-            S_HEAD = self.tail[0]
+            
+            snakehead = self.tail[0]
             for fHead in range(0, 5):
-                microbit.display.set_pixel(S_HEAD[0], S_HEAD[1], self.S_BRIGHT)
+                microbit.display.set_pixel(snakehead[0], snakehead[1], self.S_BRIGHT)
                 microbit.sleep(200)
-                microbit.display.set_pixel(S_HEAD[0], S_HEAD[1], 0)
+                microbit.display.set_pixel(snakehead[0], snakehead[1], 0)
                 microbit.sleep(200)
             
             return False
@@ -139,14 +141,3 @@ class SnakeB():
 
 snake = SnakeB()
 snake.startGame()
-    
-    
-        
-        
-            
-            
-            
-            
-            
-            
-            
