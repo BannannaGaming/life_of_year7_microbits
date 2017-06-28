@@ -98,7 +98,7 @@ class SnakeB():
         elif self.direction == self.RIGHT:
             newSegment[0] += 1
             
-        if self.checkCollision(newSegment[0], newSegment[1])
+        if self.checkCollision(newSegment[0], newSegment[1]):
             
             snakehead = self.tail[0]
             for fHead in range(0, 5):
@@ -112,7 +112,7 @@ class SnakeB():
         else:
             self.addSegment(newSegment[0], newSegment[1])
             
-            if newSegment[0] == self.A[0] and newSegment[1] == self.apple[1]:
+            if newSegment[0] == self.a[0] and newSegment[1] == self.a[1]:
                 self.length += 1
                 self.score += 10
                 self.createA()
